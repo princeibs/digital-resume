@@ -17,7 +17,7 @@ class Skill(models.Model):
     image = models.FileField(blank=True, null=True, upload_to='skills')
     is_key_skill = models.BooleanField(default=False)
 
-    def __str_(self):
+    def __str__(self):
         return self.name
 
 
@@ -95,7 +95,7 @@ class Media(models.Model):
 class Portfolio(models.Model):
 
     class Meta:
-        verbose_name_plural = 'Protfolio Profiles'
+        verbose_name_plural = 'Portfolio Profiles'
         verbose_name = "Portfolio"
         ordering = ['name']
     
