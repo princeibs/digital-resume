@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.contrib import messages
 from .models import (
-    UserProfile, 
+    #UserProfile, 
     Blog,
     Portfolio,
     Testimonial,
-    Certificate
+    Certificate,
+    Skill
 )
 
 from django.views import generic
@@ -22,11 +23,13 @@ class IndexView(generic.TemplateView):
         certificates = Certificate.objects.filter(is_active=True)
         blogs = Blog.objects.filter(is_active=True)
         portfolio = Portfolio.objects.filter(is_active=True)
+        skills = Skill.objects.all()
 
         context['testimonials'] = testimonials
         context['certificates'] = certificates
         context['blogs'] = blogs
         context['portfolio'] = portfolio
+        context['skills'] = skills
 
         return context
 
@@ -48,7 +51,8 @@ class PortfolioView(generic.ListView):
     paginated_by = 10
 
     def get_queryset(self):
-        return super().get_queryset().filter(is_active=True)
+        data = super().get_queryset().filter(is_active=True)
+        return data
 
 
 class PortfolioDetailView(generic.DetailView):

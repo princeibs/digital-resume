@@ -42,4 +42,4 @@ class CertificateAdmin(admin.ModelAdmin):
 
 @admin.register(Skill)
 class SkillAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'score')
+    list_display = ('id', 'name', 'score', 'is_key_skill')
