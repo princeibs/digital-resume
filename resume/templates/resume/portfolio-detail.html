@@ -4,8 +4,8 @@
 <!-- ================================
 Start SEO blocks
 ================================= -->
-{% block title %}Prince IBS - Contact {% endblock %}
-{% block description %}{% endblock %}
+{% block title %}Prince IBS - Project Details {% endblock %}
+{% block description %} List of my portfolio projects {% endblock %}
 {% block keywords %}{% endblock %}
 <!-- ================================
 End SEO blocks
@@ -30,36 +30,43 @@ End CSS blocks
 <!-- ================================
 Start Content
 ================================= -->
+{% block content %}
 <section>
     <div class="innerPageBannerCol">
-    <div class="container">
-        <div class="row g-4 g-md-3  align-items-center">
-        <div class="col-md-6">
-            <div class="bannerContent">
-            <h1 class="xlTitle pb-md-3">Portfolio title</h1>
+        <div class="container">
+            <div class="row g-4 g-md-3  align-items-center">
+                <div class="col-md-6">
+                    <div class="bannerContent">
+                        <h1 class="xlTitle pb-md-3">{{ object.name }}</h1>
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
     </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="portfolioContentMain">
+            <div class="row g-3 g-md-4 g-lg-5 portfolioRow">
+                <div class="col-md-6 pColMain">
+                    <div class="pCol"><a href="{{ p.slug }}">
+                            <img src="{{ object.image.url }}" alt="..." class="pImg"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
 <section>
     <div class="sectionSpaceSm">
-    <div class="container">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-        Aenean congue imperdiet lorem ut posuere. Maecenas nec accumsan 
-        risus, quis luctus libero. Morbi a nulla ac felis scelerisque 
-        feugiat quis vitae turpis. Vivamus nec augue vel enim scelerisque 
-        cursus. Curabitur efficitur ipsum quis turpis bibendum egestas. 
-        Nunc ac euismod dolor. Vestibulum nec ipsum fermentum, semper 
-        quam eu, porttitor elit. Maecenas efficitur ex eget augue euismod 
-        semper. Curabitur pharetra tortor vel orci volutpat semper. 
-        Donec feugiat mauris ante. In hac habitasse platea dictumst.
-        </p>
-    </div>
+        <div class="container">
+            <p>{{ object.body|safe }}</p>
+        </div>
     </div>
 </section>
+{% endblock %}
 <!-- ================================
 End Content
 ================================= -->

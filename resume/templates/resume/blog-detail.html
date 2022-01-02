@@ -4,7 +4,7 @@
 <!-- ================================
 Start SEO blocks
 ================================= -->
-{% block title %}Prince IBS - Contact {% endblock %}
+{% block title %}Prince IBS - Blog Details {% endblock %}
 {% block description %}{% endblock %}
 {% block keywords %}{% endblock %}
 <!-- ================================
@@ -30,37 +30,54 @@ End CSS blocks
 <!-- ================================
 Start Content
 ================================= -->
+{% block content %}
 <section>
     <div class="innerPageBannerCol">
-    <div class="container">
-        <div class="row g-4 g-md-3  align-items-center">
-        <div class="col-md-6">
-            <div class="bannerContent">
-            <h1 class="xlTitle pb-md-3">{{ blog.name }}</h1>
+        <div class="container">
+            <div class="row g-4 g-md-3  align-items-center">
+                <div class="col-md-6">
+                    <div class="bannerContent">
+                        <h1 class="xlTitle pb-md-3">{{ object.name }}</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-auto">
+                    <div class="authorCol">
+                        <h4 class="smTitle pb-3">{{ object.author }}</h4>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <h4 class="smTitle pb-3">{{ object.timestamp|date:"d-M-Y" }}</h4>
+                </div>
             </div>
         </div>
-        </div>
-        <div class="row">
-        <div class="col-md-auto">
-            <div class="authorCol">
-            <h4 class="smTitle pb-3">{{ blog.author }}</h4>
-            </div>
-        </div>
-        <div class="col-md">
-            <h4 class="smTitle pb-3">12-10-2021</h4>
-        </div>
-        </div>
-    </div>
     </div>
 </section>
 
 <section>
-    <div class="sectionSpaceSm">
     <div class="container">
-        <p>{{ blog.body }} </p>
-    </div>
+        <div class="portfolioContentMain">
+            <div class="row g-3 g-md-4 g-lg-5 portfolioRow">
+                <div class="col-md-6 pColMain">
+                    <div class="pCol"><a href="{{ object.slug }}">
+                            <img src="{{ object.image.url }}" alt="..." class="pImg"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
+
+
+<section>
+    <div class="sectionSpaceSm">
+        <div class="container">
+            <p>{{ blog.body|safe }} </p>
+        </div>
+    </div>
+</section>
+{% endblock %}
 <!-- ================================
 End Content
 ================================= -->

@@ -4,7 +4,7 @@
 <!-- ================================
 Start SEO blocks
 ================================= -->
-{% block title %}Prince IBS - Contact {% endblock %}
+{% block title %}Prince IBS - List of Projects {% endblock %}
 {% block description %}{% endblock %}
 {% block keywords %}{% endblock %}
 <!-- ================================
@@ -33,35 +33,36 @@ Start Content
 {% block content %}
 <section>
     <div class="innerPageBannerCol">
-    <div class="container">
-        <div class="row g-4 g-md-3  align-items-center">
-        <div class="col-md-6">
-            <div class="bannerContent">
-            <h1 class="xlTitle pb-md-3">See my recent projects below</h1>
-            </div>      
+        <div class="container">
+            <div class="row g-4 g-md-3  align-items-center">
+                <div class="col-md-6">
+                    <div class="bannerContent">
+                        <h1 class="xlTitle pb-md-3">See my recent projects below</h1>
+                    </div>
+                </div>
+            </div>
         </div>
-        </div>
-    </div>
     </div>
 </section>
 
 <section>
     <div class="lightBg">
-    <div class="container">
-        <div class="portfolioContentMain">
-        <div class="row g-3 g-md-4 g-lg-5 portfolioRow">
-            <div class="col-md-6 pColMain">
-            <div class="pCol">
-                <img src="{% static 'images/' %}" alt="..." class="pImg">
-            </div>            
+        {% for p in object_list %}
+        <div class="container">
+            <div class="portfolioContentMain">
+                <div class="row g-3 g-md-4 g-lg-5 portfolioRow">
+                    <div class="col-md-6 pColMain">
+                        <div class="pCol"><a href="{{ p.slug }}">
+                                <img src="{{ p.image.url }}" alt="..." class="pImg"></a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
-    </div>
+        {% endfor %}
     </div>
 </section>
 {% endblock %}
 <!-- ================================
 End Content
 ================================= -->
-    

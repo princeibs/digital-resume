@@ -150,7 +150,7 @@ Start Content
             <h4 class="smText regular">Featured Work</h4>
             </div>
             <div class="col-auto">
-            <a href="javascript:void(0)" class="simpleLink">View all</a>
+            <a href="{% url 'resume:portfolios' %}" class="simpleLink">View all</a>
             </div>
         </div>
         {% for p in portfolio %}
@@ -159,12 +159,12 @@ Start Content
                     <div class="row g-4 align-items-center">
                     <div class="col-md-auto">
                         <div class="portfolioImgCol">
-                        <a href="{{ p.slug }}"><img src="{{ p.image.url }}" alt="..."></a>
+                        <a href="portfolio/{{ p.slug }}"><img src="{{ p.image.url }}" alt="..."></a>
                         </div>
                     </div>
                     <div class="col-md">
                         <div class="portfolioContentCol">
-                        <h4 class="lgTitle"><a href="javascript:void(0)">{{ p.name }}</a></h4>
+                        <h4 class="lgTitle"><a href="portfolio/{{ p.slug }}">{{ p.name }}</a></h4>
                         <ul class="portfolioOption">
                             <li><span class="dateLbl">{{ p.date|date:"Y" }}</span></li>
                         </ul>
@@ -214,6 +214,9 @@ Start Content
     </div>
 </section>
 
+
+<!-- Recent Posts  -->
+
 <section>
     <div class="sectionSpaceSm lightBg">
     <div class="container">
@@ -222,7 +225,7 @@ Start Content
             <h4 class="smText regular">Recent posts</h4>
         </div>
         <div class="col-auto">
-            <a href="javascript:void(0)" class="simpleLink">View all</a>
+            <a href="{% url 'resume:blogs' %}" class="simpleLink">View all</a>
         </div>
         </div>
         <div class="row g-3">        
@@ -230,10 +233,10 @@ Start Content
             {% if blog.is_active %}
                 <div class="col-lg-6">
                     <div class="cardStyle1">
-                    <h4 class="mdTitle cs1Title"><a href="{{ blog.slug }}">{{ blog.name }}</a></h4>
+                    <h4 class="mdTitle cs1Title"><a href="blog/{{ blog.slug }}">{{ blog.name }}</a></h4>
                     <ul class="cardOptionCol">
                         <!--  TODO: Change one blog.description to blog.date after adding the date field in the database -->
-                        <li>{{ blog.description }}</li> 
+                        <li>{{ blog.timestamp|date:"d M Y" }}</li> 
                         <li>{{ blog.description }}</li>
                     </ul>
                     <p>{{ blog.body|safe }}</p>

@@ -1,14 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Heebo:wght@400;500;700;900&display=swap');
-/* font-family: 'Courier Prime', monospace;
-font-family: 'Heebo', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&family=Heebo:wght@400;500;700;900&display=swap');
+/* font-family: 'Ubuntu', monospace;
+font-family: 'consolas', sans-serif; */
 :root {
   --primaryColor: #9C07B6;
   --primaryDarkColor: #3D0048;
   --primaryHoverColor: #900AA8;
   --secondaryColor: #F9B000;
   --baseColor: #21243D;
-  --baseFont: 'Heebo', sans-serif;
-  --titleFont: 'Courier Prime', monospace;
+  --baseFont: 'Ubuntu', sans-serif;
+  --titleFont: 'consolas', monospace;
   --regular: 400;
   --medium: 500;
   --bold: 700;
@@ -83,6 +83,9 @@ a, .btn {
 }
 .btn:focus {
   outline: none;
+}
+.logoCol {
+    border-radius: 50%;
 }
 
 
@@ -491,7 +494,8 @@ body.navToggleActive {
 .portfolioContentMain {
   position: relative;
   z-index: 1;
-  padding: 50px 0 ;
+  padding: 50px 0;
+
 }
 .pCol {
   height: 100%;
@@ -504,11 +508,17 @@ body.navToggleActive {
   margin-top: -110px;
 }
 @media (min-width:576px) {
+    .logoCol {
+        border-radius: 50%;
+    }
   .swiper-pagination {
     display: none;
   }
 }
 @media (min-width:992px) {
+    .logoCol {
+        border-radius: 50%;
+    }
   .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
   	max-width: 890px;
   }
@@ -518,6 +528,9 @@ body.navToggleActive {
   }
 }
 @media (min-width:1200px) {
+    .logoCol {
+        border-radius: 50%;
+    }
   .headerCol .container-fluid {
     padding-left: 55px;
     padding-right: 55px;
@@ -525,6 +538,9 @@ body.navToggleActive {
 }
 
 @media (max-width:1199px) {
+    .logoCol {
+        border-radius: 50%;
+    }
   .navCol a {
   	font-size: 18px;
   }
@@ -558,6 +574,9 @@ body.navToggleActive {
 }
 
 @media (max-width:991px) {
+  .logoCol {
+        border-radius: 50%;
+   }
   .sliderOuter .swiper-button-next.swiperBtnStyle {
     right: -20px;
   }
@@ -706,6 +725,7 @@ body.navToggleActive {
   }
   .logoCol img {
   	width: 50px;
+    border-radius: 50%;
   }
   .fixedHeader .headerCol,  .headerCol {
   	padding: 10px 0;
@@ -713,6 +733,9 @@ body.navToggleActive {
 }
 
 @media(max-width:575px) {
+    .logoCol {
+        border-radius: 50%;
+    }
   .sliderOuter .swiper-button-prev.swiperBtnStyle ,
   .sliderOuter .swiper-button-next.swiperBtnStyle {
     display: none;
@@ -772,5 +795,6 @@ input[type=text], input[type=email], select, textarea {
   box-sizing: border-box;
   margin-top: 6px;
   margin-bottom: 16px;
-  resize: vertical
+  resize: vertical;
+  font-family: var(--titleFont);
 }

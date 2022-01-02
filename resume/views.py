@@ -16,7 +16,7 @@ class IndexView(generic.TemplateView):
     template_name = 'resume/index.html'
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)          
 
         testimonials = Testimonial.objects.filter(is_active=True)
         certificates = Certificate.objects.filter(is_active=True)
@@ -26,8 +26,8 @@ class IndexView(generic.TemplateView):
 
         context['testimonials'] = testimonials
         context['certificates'] = certificates
-        context['blogs'] = blogs
-        context['portfolio'] = portfolio
+        context['blogs'] = blogs[:2]
+        context['portfolio'] = portfolio[:2]
         context['skills'] = skills
 
         return context
@@ -49,14 +49,14 @@ class PortfolioView(generic.ListView):
     template_name = 'resume/portfolio.html'
     paginated_by = 10
 
-    def get_queryset(self):
-        data = super().get_queryset().filter(is_active=True)
-        return data
+    def get_queryset(self):        
+        return super().get_queryset().filter(is_active=True)
 
 
 class PortfolioDetailView(generic.DetailView):
     model = Portfolio
     template_name = 'resume/portfolio-detail.html'
+    
 
 
 class BlogView(generic.ListView):
