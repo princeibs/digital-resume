@@ -135,10 +135,9 @@ class Blog(models.Model):
     image = models.ImageField(blank=True, null=True, upload_to='blog')
     is_active = models.BooleanField(default=True)
 
-    def save(self, *args, **kwargs):
-        if not self.id:
-            self.slug = slugify(self.name)
-            super(Blog, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):    
+        self.slug = slugify(self.name)
+        super(Blog, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -157,6 +156,7 @@ class Certificate(models.Model):
     name = models.CharField(max_length=50, blank=True, null=True)
     title = models.CharField(max_length=200, blank=True, null=True)
     description = models.CharField(max_length=500, null=True, blank=True)
+    image = models.ImageField(blank=True, null=True, upload_to='certificate')
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
