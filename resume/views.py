@@ -26,7 +26,7 @@ class IndexView(generic.TemplateView):
 
         context['testimonials'] = testimonials
         context['certificates'] = certificates
-        context['blogs'] = blogs[:3]
+        context['blogs'] = blogs[:2]
         context['portfolio'] = portfolio[:3]
         context['skills'] = skills
 
