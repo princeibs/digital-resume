@@ -47,20 +47,29 @@ Start Content
 
 <section>
     <div class="lightBg">
-        <div class="container">
-            {% for post in blog %}
+        <div class="container">            
             <div class="portfolioContentMain">
                 <div class="row g-3 g-md-4 g-lg-5 portfolioRow">
-                    <div class="col-md-6 pColMain">
+                    {% for post in blog %}
+                    <!-- <div class="col-md-6 pColMain">
                         <div class="pCol">
                             <a href="{{ post.url }}">
                                 <img src="{{ post.cover_image }}" alt="{{ post.title }}" class="pImg">
                             </a>                            
                         </div>
+                    </div> -->
+                    <div class="cardStyle1">
+                        <div class="portfolioImgColBlog"><img src="{{ post.cover_image }}" alt="{{ post.title }}"></div>
+                        <ul class="cardOptionCol">
+                            <h4 class="mdTitle cs1Title"><a href="{{ post.canonical_url }}">{{ post.title }}</a></h4>
+                            <li>{{ post.readable_publish_date }}</li>
+                            <li>{{ post.tag_list|random }}</li>
+                        </ul>
+                        <p>{{ post.description }}</p>
                     </div>
+                    {% endfor %}
                 </div>
-            </div>
-            {% endfor %}
+            </div>            
         </div>
     </div>
 </section>

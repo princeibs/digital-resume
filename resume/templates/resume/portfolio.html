@@ -47,19 +47,20 @@ Start Content
 
 <section>
     <div class="lightBg">
-        {% for p in portfolio %}
         <div class="container">
             <div class="portfolioContentMain">
                 <div class="row g-3 g-md-4 g-lg-5 portfolioRow">
+                    {% for p in portfolio %}
                     <div class="col-md-6 pColMain">
                         <div class="pCol"><a href="{{ p.slug }}">
-                                <img src="{{ p.image.url }}" alt="..." class="pImg"></a>
+                                <img src="{{ p.image.url }}" alt="..." class="pImg">
+                            </a>
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
-        {% endfor %}
     </div>
 </section>
 {% endblock %}

@@ -157,7 +157,6 @@ Start Content
                     </div>
                 </div>
                 {% for p in portfolio %}
-                {% if p.is_active %}
                 <div class="portfolioCard">
                     <div class="row g-4 align-items-center">
                         <div class="col-md-auto">
@@ -176,7 +175,6 @@ Start Content
                         </div>
                     </div>
                 </div>
-                {% endif %}
                 {% endfor %}
             </div>
             <div class="testimonialCol">
@@ -235,9 +233,11 @@ Start Content
                 {% for blog in blogs %}
                 <div class="col-lg-6">
                     <div class="cardStyle1">
-                        <h4 class="mdTitle cs1Title"><a href="{{ blog.canonical_url }}">{{ blog.title }}</a></h4>
+                        <div class="portfolioImgColBlog"><a href="{{ blog.url }}">
+                            <img src="{{ blog.cover_image }}" alt="{{ blog.title }}">
+                        </a></div>
                         <ul class="cardOptionCol">
-                            <!--  TODO: Change one blog.description to blog.date after adding the date field in the database -->
+                            <h4 class="mdTitle cs1Title"><a href="{{ blog.url }}">{{ blog.title }}</a></h4>
                             <li>{{ blog.readable_publish_date }}</li>
                             <li>{{ blog.tag_list|random }}</li>
                         </ul>
