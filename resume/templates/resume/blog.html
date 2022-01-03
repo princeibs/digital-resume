@@ -48,13 +48,13 @@ Start Content
 <section>
     <div class="lightBg">
         <div class="container">
-            {% for blog in object_list %}
+            {% for post in blog %}
             <div class="portfolioContentMain">
                 <div class="row g-3 g-md-4 g-lg-5 portfolioRow">
                     <div class="col-md-6 pColMain">
                         <div class="pCol">
-                            <a href="{{ blog.slug }}">
-                                <img src="{{ blog.image.url }}" alt="..." class="pImg">
+                            <a href="{{ post.url }}">
+                                <img src="{{ post.cover_image }}" alt="{{ post.title }}" class="pImg">
                             </a>                            
                         </div>
                     </div>

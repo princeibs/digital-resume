@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib import messages
+import requests
 from .models import (
     Blog,
     Portfolio,
@@ -20,13 +21,14 @@ class IndexView(generic.TemplateView):
 
         testimonials = Testimonial.objects.filter(is_active=True)
         certificates = Certificate.objects.filter(is_active=True)
-        blogs = Blog.objects.filter(is_active=True)
+        # blogs = Blog.objects.filter(is_active=True)
+        blogs = requests.get("https://dev.to/api/articles?username=princeibs").json()
         portfolio = Portfolio.objects.filter(is_active=True)
         skills = Skill.objects.all()
 
         context['testimonials'] = testimonials
         context['certificates'] = certificates
-        context['blogs'] = blogs[:2]
+        context['blogs'] = blogs[:4]
         context['portfolio'] = portfolio[:3]
         context['skills'] = skills
 
@@ -47,7 +49,7 @@ class ContactView(generic.FormView):
 class PortfolioView(generic.ListView):
     model = Portfolio
     template_name = 'resume/portfolio.html'
-    paginated_by = 10
+    context_object_name = 'portfolio'
 
     def get_queryset(self):        
         return super().get_queryset().filter(is_active=True)
@@ -56,16 +58,17 @@ class PortfolioView(generic.ListView):
 class PortfolioDetailView(generic.DetailView):
     model = Portfolio
     template_name = 'resume/portfolio-detail.html'
+    context_object_name = 'project'
     
 
 
 class BlogView(generic.ListView):
-    model = Blog
     template_name = 'resume/blog.html'
-    paginated_by = 10
+    blog = requests.get("https://dev.to/api/articles?username=princeibs").json()
+    context_object_name = 'blog'
 
     def get_queryset(self):
-        return super().get_queryset().filter(is_active=True)
+        return self.blog
 
 
 class BlogDetailView(generic.DetailView):

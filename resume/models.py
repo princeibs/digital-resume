@@ -6,8 +6,9 @@ from ckeditor.fields import RichTextField
 
 # Create your models here.
 
+
 class Skill(models.Model):
-      
+
     class Meta:
         verbose_name_plural = 'Skills'
         verbose_name = 'Skill'
@@ -87,7 +88,7 @@ class Media(models.Model):
         if self.url:
             self.is_image = False
             super(Media, self).save(*args, **kwargs)
-    
+
     def __str__(self):
         return self.name
 
@@ -98,7 +99,7 @@ class Portfolio(models.Model):
         verbose_name_plural = 'Portfolio Profiles'
         verbose_name = "Portfolio"
         ordering = ['name']
-    
+
     date = models.DateTimeField(blank=True, null=True)
     name = models.CharField(max_length=200, blank=True, null=True)
     description = models.CharField(max_length=500, blank=True, null=True)
@@ -111,7 +112,7 @@ class Portfolio(models.Model):
         if not self.id:
             self.slug = slugify(self.name)
             super(Portfolio, self).save(*args, **kwargs)
-    
+
     def __str__(self):
         return self.name
 
@@ -120,7 +121,7 @@ class Portfolio(models.Model):
 
 
 class Blog(models.Model):
-    
+
     class Meta:
         verbose_name_plural = 'Blog Profiles'
         verbose_name = 'Blog'
@@ -135,13 +136,13 @@ class Blog(models.Model):
     image = models.ImageField(blank=True, null=True, upload_to='blog')
     is_active = models.BooleanField(default=True)
 
-    def save(self, *args, **kwargs):    
+    def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Blog, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
-    
+
     def get_absolute_url(self):
         return f'/blog/{self.slug}'
 

@@ -51,7 +51,7 @@ Start Content
             <div class="row g-3 g-md-4 g-lg-5 portfolioRow">
                 <div class="col-md-6 pColMain">
                     <div class="pCol"><a href="{{ p.slug }}">
-                            <img src="{{ object.image.url }}" alt="..." class="pImg"></a>
+                            <img src="{{ project.image.url }}" alt="..." class="pImg"></a>
                     </div>
                 </div>
             </div>
@@ -62,7 +62,7 @@ Start Content
 <section>
     <div class="sectionSpaceSm">
         <div class="container">
-            <p>{{ object.body|safe }}</p>
+            <p>{{ project.body|safe }}</p>
         </div>
     </div>
 </section>

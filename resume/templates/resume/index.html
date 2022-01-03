@@ -25,192 +25,195 @@ Start Content
 ================================= -->
 <section>
     <div class="bannerSection">
-    <div class="container">
-        <div class="row g-4 g-md-3  align-items-center">
-        <div class="col-md-auto order-md-last">
-            <div class="bannerUserImg">
-            <img src="{{ me.userprofile.avatar.url }}" alt="...">
+        <div class="container">
+            <div class="row g-4 g-md-3  align-items-center">
+                <div class="col-md-auto order-md-last">
+                    <div class="bannerUserImg">
+                        <img src="{{ me.userprofile.avatar.url }}" alt="...">
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="bannerContent">
+                        <h1 class="xlTitle pb-3">Hi, I’m {{ me.first_name|title }}, <br> {{ me.userprofile.title }}</h1>
+                        <p>{{ me.userprofile.bio }}</p>
+                        <div class="bannerBtnCol">
+                            <div class="row">
+                                <div class="col-auto">
+                                    <a download href="{{ me.userprofile.cv.url }}" class="btn btnPrimary">Download
+                                        Resume</a>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="{% url 'resume:contact' %}" class="btn btnOutline">Contact</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-md">
-            <div class="bannerContent">
-            <h1 class="xlTitle pb-3">Hi, I’m {{ me.first_name|title }}, <br> {{ me.userprofile.title }}</h1>
-            <p>{{ me.userprofile.bio }}</p>
-            <div class="bannerBtnCol">
-                <div class="row">
-                <div class="col-auto">
-                    <a download href="{{ me.userprofile.cv.url }}" class="btn btnPrimary">Download Resume</a>
-                </div>
-                <div class="col-auto">
-                    <a href="{% url 'resume:contact' %}" class="btn btnOutline">Contact</a>
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        </div>
-    </div>
     </div>
 </section>
 
 <section>
     <div class="sectionSpace pt-0">
-    <div class="container">
-        <div class="row">
-        <div class="col-md-auto">
-            <div class="keySkillCol">
-            <h4 class="smTitle pb-3">Key Skills</h4>
-            {% for skill in skills %}
-                {% if skill.is_key_skill %}
-                <div class="keySkillCard">
-                    <div class="ksIconCol">
-                    <img src="{{  skill.image.url }}" alt="...">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-auto">
+                    <div class="keySkillCol">
+                        <h4 class="smTitle pb-3">Key Skills</h4>
+                        {% for skill in skills %}
+                        {% if skill.is_key_skill %}
+                        <div class="keySkillCard">
+                            <div class="ksIconCol">
+                                <img src="{{  skill.image.url }}" alt="...">
+                            </div>
+                            <span class="ksText">{{ skill.name }}</span>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
                     </div>
-                    <span class="ksText">{{ skill.name }}</span>
-                </div> 
-                {% endif %}
-            {% endfor %}           
-            </div>
-        </div>
-        <div class="col-md">
-            <h4 class="smTitle pb-3">Coding Skills</h4>
-            <div class="progressCol">
-            <div class="progressCard">
-                {% for skill in skills %}
-                    {% if not skill.is_key_skill %}
-                        <div class="progressCol">
-                            <span class="progressLbl">{{ skill.name }}</span>
-                            <div class="row g-2 align-items-center">
-                                <div class="col">
-                                <div class="progress progressStyle">
-                                    <div class="progress-bar" role="progressbar" style="width: {{ skill.score }}%" aria-valuenow="{{ skill.score }}" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                </div>
-                                <div class="col-auto">
-                                <span class="pLbl">{{ skill.score }}</span>
+                </div>
+                <div class="col-md">
+                    <h4 class="smTitle pb-3">Coding Skills</h4>
+                    <div class="progressCol">
+                        <div class="progressCard">
+                            {% for skill in skills %}
+                            {% if not skill.is_key_skill %}
+                            <div class="progressCol">
+                                <span class="progressLbl">{{ skill.name }}</span>
+                                <div class="row g-2 align-items-center">
+                                    <div class="col">
+                                        <div class="progress progressStyle">
+                                            <div class="progress-bar" role="progressbar"
+                                                style="width: {{ skill.score }}%" aria-valuenow="{{ skill.score }}"
+                                                aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <span class="pLbl">{{ skill.score }}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>  
-                    {% endif %}
-                {% endfor %}              
-            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
-    </div>
     </div>
 </section>
 
 <section>
     <div class="sectionSpaceSm lightBg">
-    <div class="container">
-        <div class="row pb-3">
-        <div class="col">
-            <h4 class="smText regular">Certificates</h4>
-        </div>
-        <div class="col-auto">
-            <a href="javascript:void(0)" class="simpleLink">View all</a>
-        </div>
-        </div>
-        <div class="sliderOuter">
-        <div class="swiper certificatesSlider">
-            <div class="swiper-wrapper">
-            {% for cert in certificates %}
-                {% if cert.is_active %}
-                    <div class="swiper-slide">
-                        <div class="cardStyle1">
-                        <h4 class="mdTitle cs1Title">
-                            <a href="javascript:void(0)">{{ cert.title }}</a>
-                        </h4>
-                        <ul class="cardOptionCol">
-                            <li>{{ cert.date|date:"d M Y"}}</li>
-                            <li>{{ cert.name }}</li>
-                        </ul>
-                        <p>{{ cert.description }}</p>
-                        </div>
-                    </div>
-                {% endif %}
-            {% endfor %}            
+        <div class="container">
+            <div class="row pb-3">
+                <div class="col">
+                    <h4 class="smText regular">Certificates</h4>
+                </div>
+                <div class="col-auto">
+                    <a href="javascript:void(0)" class="simpleLink">View all</a>
+                </div>
             </div>
-        </div>            
-        <div class="cert-swiper-button-next swiper-button-next swiperBtnStyle"></div>
-        <div class="cert-swiper-button-prev swiper-button-prev swiperBtnStyle"></div>
-        <div class="swiper-pagination swiperPaginationStyle posInitial"></div>
+            <div class="sliderOuter">
+                <div class="swiper certificatesSlider">
+                    <div class="swiper-wrapper">
+                        {% for cert in certificates %}
+                        {% if cert.is_active %}
+                        <div class="swiper-slide">
+                            <div class="cardStyle1">
+                                <h4 class="mdTitle cs1Title">
+                                    <a href="javascript:void(0)">{{ cert.title }}</a>
+                                </h4>
+                                <ul class="cardOptionCol">
+                                    <li>{{ cert.date|date:"d M Y"}}</li>
+                                    <li>{{ cert.name }}</li>
+                                </ul>
+                                <p>{{ cert.description }}</p>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="cert-swiper-button-next swiper-button-next swiperBtnStyle"></div>
+                <div class="cert-swiper-button-prev swiper-button-prev swiperBtnStyle"></div>
+                <div class="swiper-pagination swiperPaginationStyle posInitial"></div>
+            </div>
         </div>
-    </div>
     </div>
 </section>
 
 <section>
     <div class="sectionSpace">
-    <div class="container">
-        <div class="portfolioCol">
-        <div class="row pb-3">
-            <div class="col">
-            <h4 class="smText regular">Featured Work</h4>
-            </div>
-            <div class="col-auto">
-            <a href="{% url 'resume:portfolios' %}" class="simpleLink">View all</a>
-            </div>
-        </div>
-        {% for p in portfolio %}
-            {% if p.is_active %}
-                <div class="portfolioCard">
-                    <div class="row g-4 align-items-center">
-                    <div class="col-md-auto">
-                        <div class="portfolioImgCol">
-                        <a href="portfolio/{{ p.slug }}"><img src="{{ p.image.url }}" alt="..."></a>
-                        </div>
+        <div class="container">
+            <div class="portfolioCol">
+                <div class="row pb-3">
+                    <div class="col">
+                        <h4 class="smText regular">Featured Work</h4>
                     </div>
-                    <div class="col-md">
-                        <div class="portfolioContentCol">
-                        <h4 class="lgTitle"><a href="portfolio/{{ p.slug }}">{{ p.name }}</a></h4>
-                        <ul class="portfolioOption">
-                            <li><span class="dateLbl">{{ p.date|date:"Y" }}</span></li>
-                        </ul>
-                        <p>{{ p.description }}</p>
-                        </div>
-                    </div>
+                    <div class="col-auto">
+                        <a href="{% url 'resume:portfolios' %}" class="simpleLink">View all</a>
                     </div>
                 </div>
-            {% endif %}
-        {% endfor %}
-        </div>
-        <div class="testimonialCol">
-        <h4 class="smText regular d-block">Testimonials</h4>
-        <div class="testimonialSlider">
-            <div class="swiper testimonialSwiper">
-            <div class="swiper-wrapper">                
-                {% for t in testimonials %}
-                    {% if t.is_active %}
-                        <div class="swiper-slide">
-                            <div class="testimonialCard">
-                                <div class="row align-items-center">
-                                <div class="col-sm-auto">
-                                    <div class="tImgCol">
-                                    <img src="{{ t.thumbnail.url }}" alt="...">
-                                    </div>
-                                </div>
-                                <div class="col-sm">
-                                    <div class="tContentCol">
-                                    <h4 class="xsTitle bold">{{ t.name }}</h4>
-                                    <p>{{ t.quote }}</p>
-                                    </div>
-                                </div>
-                                </div>
+                {% for p in portfolio %}
+                {% if p.is_active %}
+                <div class="portfolioCard">
+                    <div class="row g-4 align-items-center">
+                        <div class="col-md-auto">
+                            <div class="portfolioImgCol">
+                                <a href="portfolio/{{ p.slug }}"><img src="{{ p.image.url }}" alt="..."></a>
                             </div>
                         </div>
-                    {% endif %}
+                        <div class="col-md">
+                            <div class="portfolioContentCol">
+                                <h4 class="lgTitle"><a href="portfolio/{{ p.slug }}">{{ p.name }}</a></h4>
+                                <ul class="portfolioOption">
+                                    <li><span class="dateLbl">{{ p.date|date:"Y" }}</span></li>
+                                </ul>
+                                <p>{{ p.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
                 {% endfor %}
             </div>
-            <div class="test-swiper-button-next swiper-button-next swiperBtnStyle"></div>
-            <div class="test-swiper-button-prev swiper-button-prev swiperBtnStyle"></div>
+            <div class="testimonialCol">
+                <h4 class="smText regular d-block">Testimonials</h4>
+                <div class="testimonialSlider">
+                    <div class="swiper testimonialSwiper">
+                        <div class="swiper-wrapper">
+                            {% for t in testimonials %}
+                            {% if t.is_active %}
+                            <div class="swiper-slide">
+                                <div class="testimonialCard">
+                                    <div class="row align-items-center">
+                                        <div class="col-sm-auto">
+                                            <div class="tImgCol">
+                                                <img src="{{ t.thumbnail.url }}" alt="...">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm">
+                                            <div class="tContentCol">
+                                                <h4 class="xsTitle bold">{{ t.name }}</h4>
+                                                <p>{{ t.quote }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="test-swiper-button-next swiper-button-next swiperBtnStyle"></div>
+                        <div class="test-swiper-button-prev swiper-button-prev swiperBtnStyle"></div>
+                    </div>
+
+
+                </div>
             </div>
-
-
         </div>
-        </div>
-    </div>
     </div>
 </section>
 
@@ -219,33 +222,31 @@ Start Content
 
 <section>
     <div class="sectionSpaceSm lightBg">
-    <div class="container">
-        <div class="row pb-3">
-        <div class="col">
-            <h4 class="smText regular">Recent posts</h4>
-        </div>
-        <div class="col-auto">
-            <a href="{% url 'resume:blogs' %}" class="simpleLink">View all</a>
-        </div>
-        </div>
-        <div class="row g-3">        
-        {% for blog in blogs%}
-            {% if blog.is_active %}
+        <div class="container">
+            <div class="row pb-3">
+                <div class="col">
+                    <h4 class="smText regular">Recent posts</h4>
+                </div>
+                <div class="col-auto">
+                    <a href="{% url 'resume:blogs' %}" class="simpleLink">View all</a>
+                </div>
+            </div>
+            <div class="row g-3">
+                {% for blog in blogs %}
                 <div class="col-lg-6">
                     <div class="cardStyle1">
-                    <h4 class="mdTitle cs1Title"><a href="blog/{{ blog.slug }}">{{ blog.name }}</a></h4>
-                    <ul class="cardOptionCol">
-                        <!--  TODO: Change one blog.description to blog.date after adding the date field in the database -->
-                        <li>{{ blog.timestamp|date:"d M Y" }}</li> 
-                        <li>{{ blog.description }}</li>
-                    </ul>
-                    <p>{{ blog.body|safe }}</p>
+                        <h4 class="mdTitle cs1Title"><a href="{{ blog.canonical_url }}">{{ blog.title }}</a></h4>
+                        <ul class="cardOptionCol">
+                            <!--  TODO: Change one blog.description to blog.date after adding the date field in the database -->
+                            <li>{{ blog.readable_publish_date }}</li>
+                            <li>{{ blog.tag_list|random }}</li>
+                        </ul>
+                        <p>{{ blog.description }}</p>
                     </div>
                 </div>
-            {% endif %}
-        {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
     </div>
 </section>
 <!-- ================================
