@@ -47,7 +47,7 @@ Start Content
 
 <section>
     <div class="lightBg">
-        <div class="container">            
+        <div class="container">
             <div class="portfolioContentMain">
                 <div class="row g-3 g-md-4 g-lg-5 portfolioRow">
                     {% for post in blog %}
@@ -59,9 +59,10 @@ Start Content
                         </div>
                     </div> -->
                     <div class="cardStyle1">
-                        <div class="portfolioImgColBlog"><img src="{{ post.cover_image }}" alt="{{ post.title }}"></div>
+                        <div class="portfolioImgColBlog"><a href="{{ post.url}}">
+                                <img src="{{ post.cover_image }}" alt="{{ post.title }}"></a></div>
                         <ul class="cardOptionCol">
-                            <h4 class="mdTitle cs1Title"><a href="{{ post.canonical_url }}">{{ post.title }}</a></h4>
+                            <h4 class="mdTitle cs1Title"><a href="{{ post.url }}">{{ post.title }}</a></h4>
                             <li>{{ post.readable_publish_date }}</li>
                             <li>{{ post.tag_list|random }}</li>
                         </ul>
@@ -69,7 +70,7 @@ Start Content
                     </div>
                     {% endfor %}
                 </div>
-            </div>            
+            </div>
         </div>
     </div>
 </section>
