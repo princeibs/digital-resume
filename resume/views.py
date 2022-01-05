@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.contrib import messages
-import requests
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordResetView
+from django.contrib.messages.views import SuccessMessageMixin
+from django.urls.base import reverse
 from .models import (
     Blog,
     Portfolio,
@@ -8,10 +11,9 @@ from .models import (
     Certificate,
     Skill
 )
-
 from django.views import generic
-
 from .forms import ContactForm
+import requests
 
 class IndexView(generic.TemplateView):    
     template_name = 'resume/index.html'
@@ -74,4 +76,15 @@ class BlogView(generic.ListView):
 class BlogDetailView(generic.DetailView):
     model = Blog
     template_name = 'resume/blog-detail.html'
-    
+
+
+class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
+    template_name = 'resume/user/password_reset.html'
+    email_template_name = 'resume/user/password_reset_email.html'
+    subject_template_name = 'resume/user/password_reset_subject.txt'    
+    success_message = """
+                        Check the provided email for instructions on resetting your password.
+                        If the email is valid, you should receive an email, 
+                        else try entering a valid email address
+                    """
+    success_url = reverse_lazy('resume:index')
