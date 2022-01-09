@@ -79,7 +79,6 @@ class BlogDetailView(generic.DetailView):
 
 
 class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
-    template_name = 'resume/user/password_reset.html'
     email_template_name = 'resume/user/password_reset_email.html'
     subject_template_name = 'resume/user/password_reset_subject.txt'    
     success_message = """
